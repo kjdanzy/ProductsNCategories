@@ -1,0 +1,68 @@
+﻿@{
+    ViewData["Title"] = "Products Page";
+}
+@model Product
+
+<div>
+        <div>
+            <h1 class="display-4 text-center">Products  | <a href="/categories">Categories</a></h1>
+        </div>
+    <div class="containerSpaceBetween">
+    </div>
+    <br>
+    <div class="containerRow">
+        <div class="containerSpaceBetween">
+            <h4>New Product</h4>
+            <br>
+            <form asp-action="saveproduct" method="post">
+                <table class="table table-striped">
+                    <tr>
+                        <td>
+                            <label asp-for="Name"></label><br>
+                            <input type="text" name="Name" id="Name">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Description"></label><br>
+                            <textarea name="Description" id="Description" cols="23" rows="3"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label asp-for="Price"></label><br>
+                            <input type="number" name="Price" id="Price">
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <input class="btn btn-success" type="submit" value="Create">
+            </form>
+        </div>
+        <div>
+            <br>
+            @for (int i = 0; i < 10; i++)
+            {
+                <h3>|</h3>
+            }
+        </div>
+        <div>
+            <div>
+                <h3>Existing Products</h3>
+                    
+                <br>
+                <table class="table table-striped">
+                    @foreach (Product product in ViewBag.ProductList)
+                    {
+                        <tr>
+                            <td>
+                            <h4><a href="productpage/@product.ProductId">@product.Name</a></h4>  
+                            </td>
+                        </tr>
+                    } 
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

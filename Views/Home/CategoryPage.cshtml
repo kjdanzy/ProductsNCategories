@@ -1,0 +1,31 @@
+@model Association
+
+<div>
+    <h1 class="display-4 text-center">@ViewBag.Category.Name</h1>
+    <div class="containerRow text-center">
+        <div>
+            <br>
+            <h3>Products</h3>
+            <ul>
+                @foreach (var p in @ViewBag.Category.Associations)
+                {
+                    <li><h4>@p.product.Name</h4></li>
+                }
+            </ul>
+        </div>
+        <div>
+            <form asp-action="APTC" asp-controller="Home" method="post">
+                <input type="hidden" asp-for="CategoryId" name="CategoryId" value="@ViewBag.Category.CategoryId">
+                <h3>Add a product</h3>
+                <select asp-for="ProductId"name="ProductId">
+                    @foreach (Product product in ViewBag.ProductSelect)
+                    {
+                        <option value="@product.ProductId">@product.Name</option>
+                    }
+                </select>
+                <br>
+                <input type="submit" value="Add product">
+            </form>
+        </div>
+    </div>
+</div>
